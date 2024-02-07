@@ -7,7 +7,6 @@ soup = BeautifulSoup(response.text, 'html.parser')
 
  
 divClass = soup.find(id="div_wgfcst2")
-items = soup.findAll('var')
 
 text = ""
 for each in divClass:
