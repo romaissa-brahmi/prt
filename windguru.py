@@ -1,3 +1,4 @@
+from datetime import datetime
 import requests
 from bs4 import BeautifulSoup
 
@@ -20,8 +21,8 @@ rawDate = text[indexDay+63 : indexDay+85]
 Datelist = rawDate.split("\",\"")
 for each in Datelist:
    each = int(each)
-print(Datelist)
 
+month = str(datetime.today().month)
 
 # HEURE DU JOUR
 indexHour = text.find("hr_h")
@@ -30,7 +31,6 @@ rawHour = text[indexHour+63 : indexHour+85]
 Hourlist = rawHour.split("\",\"")
 for each in Hourlist:
    each = int(each)
-print(Hourlist)
 
 
 # VITESSE DU VENT
@@ -45,8 +45,6 @@ WINDSPDlist = WINDSPDlist[11:16]
 
 for each in WINDSPDlist:
     each = float(each)
-print(WINDSPDlist)
-
 
 
 # DIRECTION DU VENT
@@ -59,12 +57,19 @@ WINDDIRlist = rawWINDDIR.split(",")
 WINDDIRlist = WINDDIRlist[11:16]
 
 for each in WINDDIRlist:
-    each = float(each)
-print(WINDDIRlist)
+    each = int(each)
 
 
+f = open("wgData.txt", "a", encoding='utf8')
 
+for i in range(5):
+    f.writelines(Datelist[i] + "-" + month + " ")
+    f.writelines(Hourlist[i] + " ")
+    f.writelines(WINDSPDlist[i] + " ")
+    f.writelines(WINDDIRlist[i] + " ")
+    f.writelines("\n")
 
+f.close()
 
 
 
