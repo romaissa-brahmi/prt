@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 import requests
 from bs4 import BeautifulSoup
 
@@ -16,17 +16,15 @@ for each in divClass:
 
 # DATE DU JOUR
 indexDay = text.find("hr_d")
-rawDate = text[indexDay+63 : indexDay+85]
-
+rawDate = text[indexDay+8 : indexDay+85]
 Datelist = rawDate.split("\",\"")
 for each in Datelist:
    each = int(each)
 
-month = str(datetime.today().month)
 
 # HEURE DU JOUR
 indexHour = text.find("hr_h")
-rawHour = text[indexHour+63 : indexHour+85]
+rawHour = text[indexHour+8 : indexHour+85]
 
 Hourlist = rawHour.split("\",\"")
 for each in Hourlist:
@@ -41,11 +39,10 @@ indexFin = rawWINDSPD.find("]")
 rawWINDSPD = rawWINDSPD[ : indexFin]
 
 WINDSPDlist = rawWINDSPD.split(",")
-WINDSPDlist = WINDSPDlist[11:16]
+WINDSPDlist = WINDSPDlist[0:14]
 
 for each in WINDSPDlist:
     each = float(each)
-
 
 # DIRECTION DU VENT
 indexWINDDIR = text.find("WINDDIR")
@@ -54,20 +51,24 @@ indexFin = rawWINDDIR.find("]")
 rawWINDDIR = rawWINDDIR[ : indexFin]
 
 WINDDIRlist = rawWINDDIR.split(",")
-WINDDIRlist = WINDDIRlist[11:16]
+WINDDIRlist = WINDDIRlist[0:14]
 
 for each in WINDDIRlist:
     each = int(each)
 
-
 f = open("wgData.txt", "a", encoding='utf8')
 
-for i in range(5):
-    f.writelines(Datelist[i] + "-" + month + " ")
-    f.writelines(Hourlist[i] + " ")
-    f.writelines(WINDSPDlist[i] + " ")
-    f.writelines(WINDDIRlist[i] + " ")
-    f.writelines("\n")
+tomorrow = str((datetime.today() + timedelta(1)).day)
+month = str(datetime.today().month)
+
+for i in range(len(Datelist)):
+    if Datelist[i] == tomorrow and 10 <= int(Hourlist[i]) <= 19:
+        f.writelines(Datelist[i] + "-" + month + " ")
+        f.writelines(Hourlist[i] + " ")
+        f.writelines(WINDSPDlist[i] + " ")
+        f.writelines(WINDDIRlist[i] + " ")
+        f.writelines("\n")
+
 
 f.close()
 
