@@ -7,33 +7,28 @@ f = open("ppRawData.txt", "a", encoding='utf8')
 
 i = 0
 
-while (i < 36):
-    browser = webdriver.Safari()
+browser = webdriver.Chrome()
 
+while (i < 3):
     browser.get("https://pubs.diabox.com/diaboxStaticView.php?id=105")
+    time.sleep(10)
     html = browser.page_source
-    time.sleep(3)
-    browser.close()
 
     soup = BeautifulSoup(html, 'html.parser')
     data = soup.find(id="livegaugeArea").text
 
     indexWINDbeginning = data.find("Vent")
     indexWINDending = data.find("Hum")
-    rawData = data[indexWINDbeginning + 4: indexWINDending]
+    rawData = data[indexWINDbeginning + 5: indexWINDending]
+    dataList = rawData[29:81].split(" °Temps réel\n\n\nCreated with Raphaël 2.1.2\n")
 
-    windDirection = (rawData[29: 35])
-    windSpeed = (rawData[76: 81])
+    windDirection = dataList[0].split(" ")[0]
+    windSpeed = dataList[1].split(" ")[0]
 
-    f.writelines(str(datetime.today().day) + "-" + str(datetime.today().month) + " ")
-    f.writelines(str(datetime.today().hour) + " ")
-    f.writelines(windSpeed + " ")
-    f.writelines(windDirection + " ")
-    f.writelines("\n")
-
+    response = str(datetime.today().day) + "-" + str(datetime.today().month) + " " + str(
+        datetime.today().hour) + " " + windSpeed + " " + windDirection
+    f.writelines(response + "\n")
     i += 1
 
-    # décider si toutes les 5min(300) ou toutes les 10min(600)
-    time.sleep(300)
-
 f.close()
+browser.close()
