@@ -62,7 +62,7 @@ tomorrow = str((datetime.today() + timedelta(1)).day)
 month = str(datetime.today().month)
 
 for i in range(len(Datelist)):
-    if Datelist[i] == tomorrow and 10 <= int(Hourlist[i]) <= 19:
+    if Datelist[i] == tomorrow and 10 <= int(Hourlist[i]) <= 22:
         f.writelines(Datelist[i] + "-" + month + " ")
         f.writelines(Hourlist[i] + " ")
         f.writelines(WINDSPDlist[i] + " ")
