@@ -39,7 +39,7 @@ indexFin = rawWINDSPD.find("]")
 rawWINDSPD = rawWINDSPD[ : indexFin]
 
 WINDSPDlist = rawWINDSPD.split(",")
-WINDSPDlist = WINDSPDlist[0:14]
+WINDSPDlist = WINDSPDlist[0:16]
 
 for each in WINDSPDlist:
     each = float(each)
@@ -51,7 +51,7 @@ indexFin = rawWINDDIR.find("]")
 rawWINDDIR = rawWINDDIR[ : indexFin]
 
 WINDDIRlist = rawWINDDIR.split(",")
-WINDDIRlist = WINDDIRlist[0:14]
+WINDDIRlist = WINDDIRlist[0:16]
 
 for each in WINDDIRlist:
     each = int(each)

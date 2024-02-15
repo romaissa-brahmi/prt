@@ -3,16 +3,17 @@ from selenium import webdriver
 from datetime import datetime
 import time
 
-f = open("ppRawData.txt", "w", encoding='utf8')
+
+f = open("ppRawData.txt", "a", encoding='utf8')
 
 i = 0
 
 browser = webdriver.Chrome()
+browser.get("https://pubs.diabox.com/diaboxStaticView.php?id=105")
 
-while i < 25:
-
-    browser.get("https://pubs.diabox.com/diaboxStaticView.php?id=105")
-    time.sleep(180)
+while i < 60:
+    print(i)
+    time.sleep(120)
     html = browser.page_source
 
     soup = BeautifulSoup(html, 'html.parser')
@@ -29,12 +30,14 @@ while i < 25:
     response = str(datetime.today().day) + "-" + str(datetime.today().month) + " " + str(
         datetime.today().hour) + " " + windSpeed + " " + windDirection
     f.writelines(response + "\n")
+    print(response)
 
     i += 1
 
 f.close()
 browser.close()
 
+'''
 f = open("ppRawData.txt", "r", encoding='utf8')
 L = f.readlines()
 f.close()
@@ -60,3 +63,4 @@ f.writelines("%.1f" % (meanSpeed / len(L)) + " ")
 f.writelines("%.1f" % (meanDirection / len(L)) + " ")
 f.writelines("\n")
 f.close()
+'''
