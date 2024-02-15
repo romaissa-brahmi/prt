@@ -3,7 +3,7 @@ from selenium import webdriver
 from datetime import datetime
 import time
 
-
+'''
 f = open("ppRawData.txt", "a", encoding='utf8')
 
 i = 0
@@ -63,4 +63,3 @@ f.writelines("%.1f" % (meanSpeed / len(L)) + " ")
 f.writelines("%.1f" % (meanDirection / len(L)) + " ")
 f.writelines("\n")
 f.close()
-'''
