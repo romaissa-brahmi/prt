@@ -11,7 +11,7 @@ i = 0
 browser = webdriver.Chrome()
 browser.get("https://pubs.diabox.com/diaboxStaticView.php?id=105")
 
-while i < 60:
+while i < 20:
     print(i)
     time.sleep(120)
     html = browser.page_source
