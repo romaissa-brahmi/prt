@@ -4,14 +4,14 @@ from datetime import datetime
 import time
 
 
-f = open("ppRawData.txt", "a", encoding='utf8')
+f = open("ppRawData.txt", "w", encoding='utf8')
 
 i = 0
 
-browser = webdriver.Chrome()
+browser = webdriver.Safari()
 browser.get("https://pubs.diabox.com/diaboxStaticView.php?id=105")
 
-while i < 20:
+while i < 35:
     print(i)
     time.sleep(120)
     html = browser.page_source
