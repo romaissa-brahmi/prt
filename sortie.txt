@@ -1,0 +1,2 @@
+Execution du script par cron :
+Thu Feb 29 20:16:45 CET 2024

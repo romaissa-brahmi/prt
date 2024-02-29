@@ -4,4 +4,4 @@ import os
 # Ici à titre d'exemple, la date et l'heure d'execution sont insérées à la suite du fichier "out.txt"
 
 os.system("echo Execution du script par cron : >> sortie.txt")
-os.system("echo test 1 2 3 >> sortie.txt")
+os.system("date >> sortie.txt")
