@@ -19,6 +19,7 @@ Datelist = rawDate.split("\",\"")
 for each in Datelist:
     each = int(each)
 
+
 # HEURE DU JOUR
 indexHour = text.find("hr_h")
 rawHour = text[indexHour + 8: indexHour + 85]
@@ -26,6 +27,7 @@ rawHour = text[indexHour + 8: indexHour + 85]
 Hourlist = rawHour.split("\",\"")
 for each in Hourlist:
     each = int(each)
+
 
 # VITESSE DU VENT
 indexWINDSPD = text.find("WINDSPD")
@@ -40,6 +42,7 @@ WINDSPDlist = WINDSPDlist[0:16]
 for each in WINDSPDlist:
     each = float(each)
 
+
 # DIRECTION DU VENT
 indexWINDDIR = text.find("WINDDIR")
 rawWINDDIR = text[indexWINDDIR + 10: indexWINDDIR + 550]
@@ -52,13 +55,16 @@ WINDDIRlist = WINDDIRlist[0:16]
 for each in WINDDIRlist:
     each = int(each)
 
+
 f = open("wgData.txt", "a", encoding='utf8')
 
 tomorrow = str((datetime.today() + timedelta(1)).day)
+if len(tomorrow) == 1:
+    tomorrow = "0" + tomorrow
 month = str(datetime.today().month)
 
 for i in range(len(Datelist)):
-    if Datelist[i] == tomorrow and 10 <= int(Hourlist[i]) <= 22:
+    if Datelist[i] == tomorrow and 4 <= int(Hourlist[i]) <= 22:
         f.writelines(Datelist[i] + "-" + month + " ")
         f.writelines(Hourlist[i] + " ")
         f.writelines(WINDSPDlist[i] + " ")
