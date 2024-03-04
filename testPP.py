@@ -5,6 +5,8 @@ from webdriver_manager.chrome import ChromeDriverManager
 from datetime import datetime
 import time
 
+os.system("date >> /home/ubuntu/prt/PacificPalissadesData.txt")
+
 options = webdriver.ChromeOptions()
 options.add_argument("--headless=new")
 driver = webdriver.Chrome(ChromeDriverManager().install())
@@ -30,6 +32,5 @@ data = today + "-" + str(datetime.today().month) + " " + str(
     datetime.today().hour) + " " + windSpeed + " " + windDirection
 print(data)
 
-os.system("date >> /home/ubuntu/prt/PacificPalissadesData.txt")
 os.system("echo '{}' >> /home/ubuntu/prt/PacificPalissadesData.txt".format(data))
 
