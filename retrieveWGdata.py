@@ -71,7 +71,6 @@ for i in range(len(Datelist)):
         data += (WINDDIRlist[i] + " ")
         data += "\n"
 
-os.system("date >> /home/ubuntu/prt/WindguruData.txt")
 os.system("echo '{}' >> /home/ubuntu/prt/WindguruData.txt".format(data))
 
 # directionNames = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSO", "SO", "OSO", "O", "ONO", "NO", "NNO"]
