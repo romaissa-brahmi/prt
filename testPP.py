@@ -7,19 +7,29 @@ import time
 
 os.system("date >> /home/ubuntu/prt/PacificPalissadesData.txt")
 
-options = webdriver.ChromeOptions()
-options.add_argument("--headless=new")
-driver = webdriver.Chrome(ChromeDriverManager().install())
-driver.get("https://pubs.diabox.com/diaboxStaticView.php?id=105")
-time.sleep(10)
-elements = driver.find_element(By.XPATH, "/html/body").text
-driver.quit()
 
-indexWINDbeginning = elements.find("VENT")
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_argument("--headless")
+
+try:
+    # Initialize Chrome WebDriver with options
+    driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=chrome_options)
+
+    # Now you can use the 'driver' object for automation tasks
+
+    driver.get("https://pubs.diabox.com/diaboxStaticView.php?id=105")
+    time.sleep(10)
+    elements = driver.find_element(By.XPATH, "/html/body").text
+    driver.quit()
+
+except Exception as e:
+    print("An error occurred:", e)
+
+indexWINDbeginning = elements.find("WIND")
 indexWINDending = elements.find("HUM")
-rawData = elements[indexWINDbeginning + 32: indexWINDending - 17]
+rawData = elements[indexWINDbeginning + 32: indexWINDending - 15]
 
-dataList = rawData.split(" °\nTemps réel\nCreated with Raphaël 2.1.2\n")
+dataList = rawData.split(" °\nRealtime\nCreated with Raphaël 2.1.2\n")
 
 windDirection = dataList[0].split(" ")[0]
 windSpeed = dataList[1].split(" ")[0]
@@ -30,7 +40,6 @@ if len(today) == 1:
 
 data = today + "-" + str(datetime.today().month) + " " + str(
     datetime.today().hour) + " " + windSpeed + " " + windDirection
-print(data)
 
 os.system("echo '{}' >> /home/ubuntu/prt/PacificPalissadesData.txt".format(data))
 
