@@ -9,9 +9,8 @@ os.system("date >> /home/ubuntu/prt/PacificPalissadesData.txt")
 
 chrome_driver_path = "/home/ubuntu"
 
-# Define Chrome options
 chrome_options = webdriver.ChromeOptions()
-chrome_options.add_argument("--headless")
+# chrome_options.add_argument("--headless")
 
 driver = webdriver.Chrome(chrome_driver_path, options=chrome_options)
 
@@ -37,4 +36,3 @@ data = today + "-" + str(datetime.today().month) + " " + str(
     datetime.today().hour) + " " + windSpeed + " " + windDirection
 
 os.system("echo '{}' >> /home/ubuntu/prt/PacificPalissadesData.txt".format(data))
-
