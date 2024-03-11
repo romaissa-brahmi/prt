@@ -11,19 +11,12 @@ os.system("date >> /home/ubuntu/prt/PacificPalissadesData.txt")
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument("--headless")
 
-try:
-    # Initialize Chrome WebDriver with options
-    driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=chrome_options)
+driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=chrome_options)
 
-    # Now you can use the 'driver' object for automation tasks
-
-    driver.get("https://pubs.diabox.com/diaboxStaticView.php?id=105")
-    time.sleep(10)
-    elements = driver.find_element(By.XPATH, "/html/body").text
-    driver.quit()
-
-except Exception as e:
-    print("An error occurred:", e)
+driver.get("https://pubs.diabox.com/diaboxStaticView.php?id=105")
+time.sleep(10)
+elements = driver.find_element(By.XPATH, "/html/body").text
+driver.quit()
 
 indexWINDbeginning = elements.find("WIND")
 indexWINDending = elements.find("HUM")
