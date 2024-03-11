@@ -1,18 +1,16 @@
 import os
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 from datetime import datetime
 import time
 
 os.system("date >> /home/ubuntu/prt/PacificPalissadesData.txt")
-
-chrome_driver_path = "/home/ubuntu"
-
-chrome_options = webdriver.ChromeOptions()
-# chrome_options.add_argument("--headless")
-
-driver = webdriver.Chrome(chrome_driver_path, options=chrome_options)
+service = Service(executable_path=r'/home/ubuntu/chromedriver')
+options = webdriver.ChromeOptions()
+options.add_argument('--headless')
+driver = webdriver.Chrome(service=service, options=options)
 
 driver.get("https://pubs.diabox.com/diaboxStaticView.php?id=105")
 time.sleep(10)
