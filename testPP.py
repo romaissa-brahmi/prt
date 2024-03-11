@@ -7,11 +7,13 @@ import time
 
 os.system("date >> /home/ubuntu/prt/PacificPalissadesData.txt")
 
+chrome_driver_path = "/home/ubuntu"
 
+# Define Chrome options
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument("--headless")
 
-driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=chrome_options)
+driver = webdriver.Chrome(chrome_driver_path, options=chrome_options)
 
 driver.get("https://pubs.diabox.com/diaboxStaticView.php?id=105")
 time.sleep(10)
