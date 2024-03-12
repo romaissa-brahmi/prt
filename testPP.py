@@ -20,10 +20,10 @@ driver.quit()
 indexWINDbeginning = elements.find("WIND")
 indexWINDending = elements.find("HUM")
 rawData = elements[indexWINDbeginning + 32: indexWINDending - 15]
-print(rawData)
-"""
-dataList = rawData.split(" °\nRealtime\nCreated with Raphaël 2.1.2\n")
 
+dataList = rawData.split(" °\nRealtime\nCreated with Raphaël 2.1.2\n")
+print(dataList)
+"""
 windDirection = dataList[0].split(" ")[0]
 windSpeed = dataList[1].split(" ")[0]
 
