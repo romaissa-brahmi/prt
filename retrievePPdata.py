@@ -2,11 +2,9 @@ import os
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
-from webdriver_manager.chrome import ChromeDriverManager
 from datetime import datetime
 import time
 
-os.system("date >> /home/ubuntu/prt/PacificPalissadesData.txt")
 service = Service(executable_path=r'/snap/chromium/2768/usr/lib/chromium-browser/chromedriver')
 options = webdriver.ChromeOptions()
 options.add_argument('--headless')
