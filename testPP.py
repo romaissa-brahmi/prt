@@ -13,7 +13,7 @@ options.add_argument('--headless')
 driver = webdriver.Chrome(service=service, options=options)
 
 driver.get("https://pubs.diabox.com/diaboxStaticView.php?id=105")
-time.sleep(10)
+time.sleep(30)
 elements = driver.find_element(By.XPATH, "/html/body").text
 driver.quit()
 
