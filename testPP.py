@@ -33,5 +33,4 @@ if len(today) == 1:
 data = today + "-" + str(datetime.today().month) + " " + str(
     datetime.today().hour) + " " + windSpeed + " " + windDirection
 
-print(data)
 os.system("echo '{}' >> /home/ubuntu/prt/PacificPalissadesData.txt".format(data))
