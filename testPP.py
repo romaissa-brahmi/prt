@@ -7,7 +7,7 @@ from datetime import datetime
 import time
 
 os.system("date >> /home/ubuntu/prt/PacificPalissadesData.txt")
-service = Service(executable_path=r'/home/ubuntu/chromedriver')
+service = Service(executable_path=r'/snap/chromium/2768/usr/lib/chromium-browser/chromedriver')
 options = webdriver.ChromeOptions()
 options.add_argument('--headless')
 driver = webdriver.Chrome(service=service, options=options)
