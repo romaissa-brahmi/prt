@@ -20,7 +20,8 @@ driver.quit()
 indexWINDbeginning = elements.find("WIND")
 indexWINDending = elements.find("HUM")
 rawData = elements[indexWINDbeginning + 32: indexWINDending - 15]
-
+print(rawData)
+"""
 dataList = rawData.split(" °\nRealtime\nCreated with Raphaël 2.1.2\n")
 
 windDirection = dataList[0].split(" ")[0]
@@ -34,3 +35,4 @@ data = today + "-" + str(datetime.today().month) + " " + str(
     datetime.today().hour) + " " + windSpeed + " " + windDirection
 
 os.system("echo '{}' >> /home/ubuntu/prt/PacificPalissadesData.txt".format(data))
+"""
