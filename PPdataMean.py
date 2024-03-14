@@ -122,7 +122,7 @@ if len(yesterday) == 1:
     today = "0" + yesterday
 
 
-f = open("/home/ubuntu/prt/PacificPalissadesData.txt", "r", encoding='utf8')
+f = open("/home/ubuntu/prt/PacificPalissades.txt", "r", encoding='utf8')
 data = f.readlines()
 f.close()
 
