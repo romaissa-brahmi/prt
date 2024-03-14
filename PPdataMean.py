@@ -122,8 +122,7 @@ if len(yesterday) == 1:
     today = "0" + yesterday
 
 
-file = "/home/ubuntu/prt/" + yesterday + "-" + str(datetime.today().month) + "-PacificPalissadesData.txt"
-f = open(file, "r", encoding='utf8')
+f = open("/home/ubuntu/prt/PacificPalissadesData.txt", "r", encoding='utf8')
 data = f.readlines()
 f.close()
 
