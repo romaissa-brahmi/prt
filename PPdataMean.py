@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 import numpy as np
 import math
@@ -117,12 +117,12 @@ def write_info():
     f.close()
 
 
-today = str(datetime.today().day)
-if len(today) == 1:
-    today = "0" + today
+yesterday = str((datetime.today() - timedelta(1)).day)
+if len(yesterday) == 1:
+    today = "0" + yesterday
 
 
-file = "/home/ubuntu/prt/" + "13" + "-" + str(datetime.today().month) + "-PacificPalissadesData.txt"
+file = "/home/ubuntu/prt/" + yesterday + "-" + str(datetime.today().month) + "-PacificPalissadesData.txt"
 f = open(file, "r", encoding='utf8')
 data = f.readlines()
 f.close()
