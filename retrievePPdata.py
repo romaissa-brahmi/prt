@@ -2,6 +2,7 @@ import os
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
+from webdriver_manager.chrome import ChromeDriverManager
 from datetime import datetime
 import time
 
@@ -32,4 +33,4 @@ data = today + "-" + str(datetime.today().month) + " " + str(
     datetime.today().hour) + " " + windSpeed + " " + windDirection
 
 file = "/home/ubuntu/prt/" + today + "-" + str(datetime.today().month) + "-PacificPalissadesData.txt"
-os.system("echo '{}' >> /home/ubuntu/prt/14-3-PacificPalissadesData.txt".format(data))
+os.system("echo '{}' >> 14-3-PacificPalissadesData.txt".format(data))
