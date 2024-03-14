@@ -32,5 +32,4 @@ if len(today) == 1:
 data = today + "-" + str(datetime.today().month) + " " + str(
     datetime.today().hour) + " " + windSpeed + " " + windDirection
 
-file = "/home/ubuntu/prt/" + today + "-" + str(datetime.today().month) + "-PacificPalissadesData.txt"
-os.system("echo '{}' >> {}".format(data, file))
+os.system("echo '{}' >> /home/ubuntu/prt/PacificPalissadesData.txt".format(data))
