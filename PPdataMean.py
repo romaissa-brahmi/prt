@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import numpy as np
 import math
 
@@ -86,7 +88,16 @@ def write_line(hour):
     mean_speed = mean_wind_speed(hour)
     mean_dir = find_angle(get_coords(hour))
 
-    return str(hour[0][0]) + " " + str(hour[0][1]) + " " + str(round(mean_speed, 1)) + " " + str(mean_dir) + "\n"
+    day = str(hour[0][0])
+    if len(day) == 1:
+        day = "0" + day
+
+    time = str(hour[0][1])
+    if len(time) == 1:
+        time = "0" + time
+
+
+    return str(day + " " + time + " " + str(round(mean_speed, 1)) + " " + str(mean_dir) + "\n")
 
 
 def write_info():
@@ -106,7 +117,13 @@ def write_info():
     f.close()
 
 
-f = open("/home/ubuntu/prt/PacificPalissadesData.txt", "r", encoding='utf8')
+today = str(datetime.today().day)
+if len(today) == 1:
+    today = "0" + today
+
+
+file = "/home/ubuntu/prt/" + "13" + "-" + str(datetime.today().month) + "-PacificPalissadesData.txt"
+f = open(file, "r", encoding='utf8')
 data = f.readlines()
 f.close()
 
