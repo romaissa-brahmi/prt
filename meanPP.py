@@ -102,7 +102,7 @@ def write_line(hour):
 
 def write_info():
 
-    f = open("/home/ubuntu/prt/PPdataMean.txt", "a", encoding='utf8')
+    f = open("/home/ubuntu/prt/dataMean.txt", "a", encoding='utf8')
 
     f.writelines(write_line(hour_4))
     f.writelines(write_line(hour_7))
