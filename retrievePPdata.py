@@ -6,7 +6,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from datetime import datetime
 import time
 
-service = Service(executable_path=r'/snap/chromium/2783/usr/lib/chromium-browser/chromedriver')
+service = Service(executable_path=r'/snap/chromium/2805/usr/lib/chromium-browser/chromedriver')
 options = webdriver.ChromeOptions()
 options.add_argument('--headless')
 driver = webdriver.Chrome(service=service, options=options)
