@@ -3,12 +3,12 @@ from datetime import datetime, timedelta
 import numpy as np
 import math
 
-hour_4 = []
-hour_7 = []
-hour_10 = []
-hour_13 = []
-hour_16 = []
-hour_19 = []
+hour_5 = []
+hour_8 = []
+hour_11 = []
+hour_14 = []
+hour_17 = []
+hour_20 = []
 hour_22 = []
 
 
@@ -44,26 +44,23 @@ def find_angle(coords):
 
 def switch_function(day, hour, speed, direction):
 
-    if 4 <= hour <= 6:
-        hour_4.append([day, hour, speed, direction])
+    if 5 <= hour <= 7:
+        hour_5.append([day, hour, speed, direction])
 
-    elif 7 <= hour <= 9:
-        hour_7.append([day, hour, speed, direction])
+    elif 8 <= hour <= 10:
+        hour_8.append([day, hour, speed, direction])
 
-    elif 10 <= hour <= 12:
-        hour_10.append([day, hour, speed, direction])
+    elif 11 <= hour <= 13:
+        hour_11.append([day, hour, speed, direction])
 
-    elif 13 <= hour <= 15:
-        hour_13.append([day, hour, speed, direction])
+    elif 14 <= hour <= 16:
+        hour_14.append([day, hour, speed, direction])
 
-    elif 16 <= hour <= 18:
-        hour_16.append([day, hour, speed, direction])
+    elif 17 <= hour <= 19:
+        hour_17.append([day, hour, speed, direction])
 
-    elif 19 <= hour <= 21:
-        hour_19.append([day, hour, speed, direction])
-
-    elif 22 <= hour <= 23:
-        hour_22.append([day, hour, speed, direction])
+    elif 20 <= hour <= 23:
+        hour_20.append([day, hour, speed, direction])
 
 
 def divide_values_by_hours(data):
@@ -104,12 +101,12 @@ def write_info():
 
     f = open("/home/ubuntu/prt/dataMean.txt", "a", encoding='utf8')
 
-    f.writelines(write_line(hour_4))
-    f.writelines(write_line(hour_7))
-    f.writelines(write_line(hour_10))
-    f.writelines(write_line(hour_13))
-    f.writelines(write_line(hour_16))
-    f.writelines(write_line(hour_19))
+    f.writelines(write_line(hour_5))
+    f.writelines(write_line(hour_8))
+    f.writelines(write_line(hour_11))
+    f.writelines(write_line(hour_14))
+    f.writelines(write_line(hour_17))
+    f.writelines(write_line(hour_20))
     f.writelines(write_line(hour_22))
 
     f.writelines("\n")
