@@ -110,6 +110,8 @@ def write_info():
     f.writelines(write_line(hour_22))
 
     f.writelines("\n")
+    f.writelines("\n")
+
 
     f.close()
 
