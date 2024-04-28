@@ -17,14 +17,15 @@ for i in range(len(directionData)-1):
 X_direction = np.array(X_direction)
 y_direction = np.array(y_direction).ravel()
 
-plt.plot(X_direction, y_direction, 'ro')
-plt.xlabel('Valeurs prédites')
-plt.ylabel('Valeurs réelles')
-plt.show()
 
 X_train, X_test, y_train, y_test = train_test_split(X_direction, y_direction, test_size=0.25, random_state=1)
 regr = MLPRegressor(random_state=1, max_iter=500).fit(X_train, y_train)
 predictions = regr.predict(X_test)
 score = regr.score(X_test, y_test)
 
-print(score)
+
+plt.plot(X_direction, y_direction, 'ro')
+plt.plot(predictions, y_test, 'bo')
+plt.xlabel('Valeurs prédites')
+plt.ylabel('Valeurs réelles')
+plt.show()
