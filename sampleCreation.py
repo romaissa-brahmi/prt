@@ -39,4 +39,11 @@ def write_info():
     f.writelines("\n")
     f.close()
 
-write_info()
+#write_info()
+
+
+
+directionNames = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSO", "SO", "OSO", "O", "ONO", "NO", "NNO"]
+directionDegrees = [0.0, 22.5, 45.0, 67.5, 90.0, 112.5, 135.0, 157.5, 180.0, 202.5, 225.0, 247.5, 270.0, 292.5, 315.0, 337.5, 360.0]
+print(len(directionNames))
+print(len(directionDegrees))
