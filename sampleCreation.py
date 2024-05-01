@@ -39,4 +39,5 @@ def write_info():
     f.writelines("\n")
     f.close()
 
+
 write_info()
