@@ -54,3 +54,31 @@ print("Scores de validation croisée:", scores)
 print("Score moyen de validation croisée:", scores.mean())
 
 """
+
+"""
+fig = plt.figure(figsize=(10, 8))
+ax = fig.add_subplot(projection='3d')
+
+surf = ax.scatter(X_speed, X_direction,  y_speed, c=X_direction, cmap='viridis')
+ax.set_title("Toutes les données - Vitesse et direction du vent")
+ax.set_xlabel('Vitesse prédite - Windguru')
+ax.set_zlabel('Direction prédite - Windguru')
+ax.set_ylabel('Vitesse réelle - Pacific palissades')
+
+# Ajouter une barre de couleur
+cbar = fig.colorbar(surf)
+
+# Calcul des limites de la barre de couleur
+min_val = np.min(y_speed)
+max_val = np.max(y_speed)
+
+# Définir un intervalle plus serré pour les graduations de la colorbar
+tick_values = np.linspace(min_val, max_val, num=10)  # Augmenter le nombre de points selon le besoin
+
+# Appliquer les graduations à la colorbar
+cbar.set_ticks(tick_values)
+cbar.set_ticklabels([f"{val:.2f}" for val in tick_values])
+ax.view_init(elev=20, azim=-90)  # Modifier ici selon vos besoins
+plt.show()
+"""
+

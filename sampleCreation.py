@@ -1,4 +1,6 @@
 import numpy as np
+import random
+
 
 f = open("dataMean.txt", "r", encoding='utf8')
 dataReal = f.readlines()
@@ -41,4 +43,4 @@ def write_info():
 
 
 
-write_info()
+#write_info()
