@@ -1,4 +1,6 @@
 import numpy as np
+import random
+
 
 f = open("dataMean.txt", "r", encoding='utf8')
 dataReal = f.readlines()
@@ -31,12 +33,14 @@ def write_info():
     f.writelines("\n")
     f.close()
 
-    f = open("direction.txt", "w", encoding='utf8')
+    f = open("speed&direction.txt", "w", encoding='utf8')
 
     for i in range(len(predictedSpeed)):
-        f.writelines(str(predictedDirection[i]) + " " + str(realDirection[i]) + "\n")
+        f.writelines(str(predictedSpeed[i]) + " " + str(predictedDirection[i]) + " " + str(realSpeed[i]) + "\n")
 
     f.writelines("\n")
     f.close()
 
-write_info()
+
+
+#write_info()
