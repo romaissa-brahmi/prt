@@ -25,7 +25,13 @@ for i in range(len(data) - 1):
 X_speed = np.array(X_speed)
 X_direction = np.array(X_direction)
 X = np.hstack([X_speed, X_direction])
-y_speed = np.array(y_speed).ravel()
+y_speed = np.array(y_speed)
+
+print("X speed = ", X_speed.mean())
+print("y speed = ", y_speed.mean())
+
+errorsss = X_speed - y_speed
+print("errorrrrrr = ",errorsss.std())
 
 """
 fig = plt.figure(figsize=(10, 8))
@@ -81,45 +87,55 @@ plt.show()
 
 X_train, X_test, y_train, y_test = train_test_split(X, y_speed, test_size=0.25, random_state=1)
 
-"""
+
 scoreS = []
-i = np.linspace(10, 60, 11)
-print(i)
+i = np.linspace(10, 50, 22)
 maxScoreNeurones = 0
 scoreMax = 0
-for j in range(10, 61, 5):
+x_axis = []
+y_axis = []
+"""
+for j in range(10, 51, 1):
 
     hidden_layer = (j,j)
-    regr = MLPRegressor(hidden_layer_sizes=hidden_layer, random_state=1, max_iter=200).fit(X_train, y_train)
+    regr = MLPRegressor(hidden_layer_sizes=hidden_layer, random_state=1, max_iter=500).fit(X_train, y_train)
     predictions = regr.predict(X_test)
-    score = regr.score(X_test, y_test)*100
+
+    k_fold = KFold(n_splits=5, shuffle=True, random_state=1)
+    predictions_cv = cross_val_predict(regr, X, y_speed, cv=k_fold)
+    scores = cross_val_score(regr, X_test, y_test, cv=k_fold, scoring='r2')
+    score = scores.mean()*100
+
     if scoreMax < score:
         scoreMax = score
         maxScoreNeurones = j
 
-    scoreS.append(score)
+    if(score > 50):
+        x_axis.append(j)
+        y_axis.append(score)
+        scoreS.append(score)
     print("Nombres de neurones : {}, score de la régression: {:.6f}".format(j,score))
 
 
-
 # Créer un graphique
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(figsize=(9, 8))
 print(maxScoreNeurones)
 print(scoreMax)
 # Tracer tous les points
 
 # Tracer le point le plus élevé dans une couleur différente
 #ax.scatter(maxScoreNeurones, scoreMax, color='red', marker='.', label='Max y_test Point')
-ax.scatter(i, scoreS, color='black', marker='+')
+ax.scatter(x_axis, y_axis, color='black', marker='.')
 
 # Tracer les lignes aux coordonnées x et y
-ax.vlines(x=maxScoreNeurones, ymin=0, ymax=scoreMax, color='blue', linestyle='dashed', label='Nombre de neurones = 25 ')
-ax.hlines(y=scoreMax, xmin=0, xmax=maxScoreNeurones, color='red', linestyle='dashed', label='Score = 77.25%')
+ax.vlines(x=maxScoreNeurones, ymin=0, ymax=scoreMax, color='blue', linestyle='dashed', label='Nombre de neurones = {:.0f}'.format(maxScoreNeurones))
+ax.hlines(y=scoreMax, xmin=0, xmax=maxScoreNeurones, color='red', linestyle='dashed', label='Score maximal= {:.2f}'.format(scoreMax))
+ax.plot(x_axis, y_axis, color='gray')
 
 # Ajouter des légendes et des titres aux axes
 ax.set_xlabel('Valeurs réelles - Pacific palissades')
 ax.set_ylabel('Prédiction - MLP Regressor')
-plt.xlim([0, 70])
+plt.xlim([9, 51])
 plt.ylim([min(scoreS) - 1, max(scoreS) + 1])
 plt.title("Scores en fonction du nombre de neurones")
 ax.legend()
@@ -127,13 +143,21 @@ ax.legend()
 # Afficher le graphique
 plt.show()
 
-"""
 
-hidden_layer = (25,25)
+"""
+hidden_layer = (40,40)
 regr = MLPRegressor(hidden_layer_sizes=hidden_layer, random_state=1, max_iter=200).fit(X_train, y_train)
 predictions = regr.predict(X_test)
-score = regr.score(X_test, y_test)*100
+#score = regr.score(X_test, y_test)
+
+k_fold = KFold(n_splits=5, shuffle=True, random_state=1)
+predictions_cv = cross_val_predict(regr, X, y_speed, cv=k_fold)
+scores = cross_val_score(regr, X_test, y_test, cv=k_fold, scoring='r2')
+score = scores.mean() *100
+error = predictions_cv - y_speed
+
 print("Score de la régression: {:.6f}".format(score))
+print("Ecart type de la régression: {:.6f}".format(error.std()))
 
 coefficients = np.polyfit(y_test, predictions, 1)
 pente, ordonnee_origine = coefficients
@@ -157,5 +181,6 @@ ax.yaxis.set_major_locator(MaxNLocator(10))  # Augmenter pour plus de graduation
 
 
 plt.show()
+
 
 
